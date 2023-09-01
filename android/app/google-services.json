@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "510606160324",
+    "project_id": "fir-bloc-tutorial-c4c18",
+    "storage_bucket": "fir-bloc-tutorial-c4c18.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510606160324:android:caeb23216f460d6781f491",
+        "android_client_info": {
+          "package_name": "com.example.firebase_bloc_tutorial"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvjDoC_h1gayhz8y9LNeZi56xqHTDgKvc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
