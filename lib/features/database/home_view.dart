@@ -2,6 +2,7 @@ import 'package:firebase_bloc_tutorial/features/database/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart'; // For lazy loading/pagination
 import 'package:cloud_firestore/cloud_firestore.dart'; // For my attempt for pagination
@@ -146,6 +147,7 @@ class HomeView extends StatelessWidget {
 
               onTap: () {
                 context.read<DatabaseBloc>().add(EntrySelected(index)); // Original
+                AppMetrica.reportEvent('The index of EntrySelected is $index');
               },
             ),
           );
@@ -231,52 +233,57 @@ class HomeView extends StatelessWidget {
 
 
   // ListView with pagination using the third-part package
-  _buildFirestoreListView(BuildContext context, state) {
-    final usersQuery = FirebaseFirestore.instance.collection('zizix@mail.ru').orderBy('date');
-    return Center(
-      child:
-      FirestoreListView<Map<String, dynamic>>(
-        query: usersQuery,
-        // pageSize: 10,
-        itemBuilder: (context, snapshot) {
-          Map<String, dynamic> user = snapshot.data();
-          return Card(
-            child: ListTile(
-              title: Text(
-                  // state.listOfEntryData[index].title!
-                  user['title']
-              ),
-              subtitle:
-              Text(
-                  // state.listOfEntryData[index].date!
-                  user['date']
-              ),
-              trailing:
-              // const Icon(Icons.delete),
-              IconButton(onPressed: () {
-                //TODO Event for deleting this entry
-                // print('I want to delete this entry');
-                // print('uid of this entry is ${state.listOfEntryData[index].uid}');
-                //
-                // context.read<DatabaseBloc>().add(EntryDeleteRequest(state.listOfEntryData[index].uid));
-                //
-                // // onPressed: () async {
-                // String? displayName = (context.read<AuthenticationBloc>().state
-                // as AuthenticationSuccess)
-                //     .displayName;
-                // context.read<DatabaseBloc>().add(DatabaseFetched(displayName));
-                // // })
-              }, icon: const Icon(Icons.delete)),
-
-              onTap: () {
-                // context.read<DatabaseBloc>().add(EntrySelected(index)); // Original
-                // context.read<DatabaseBloc>().add(EntrySelected(state.listOfUserData.first, index));
-              },
-            ),
-          );
-        },
-      ),
-    );
-  }
+  // _buildFirestoreListView(BuildContext context, state) {
+  //   final usersQuery = FirebaseFirestore.instance.collection('zizix@mail.ru').orderBy('date');
+  //   return Center(
+  //     child:
+  //     FirestoreListView<Map<String, dynamic>>(
+  //       query: usersQuery,
+  //       pageSize: 10,
+  //       itemBuilder: (context, snapshot) {
+  //         Map<String, dynamic> user = snapshot.data();
+  //         return Card(
+  //           child: ListTile(
+  //             title: Text(
+  //                 // state.listOfEntryData[index].title!
+  //                 user['title']
+  //             ),
+  //             subtitle:
+  //             Text(
+  //                 // state.listOfEntryData[index].date!
+  //                 user['date']
+  //             ),
+  //             trailing:
+  //             // const Icon(Icons.delete),
+  //             IconButton(onPressed: () {
+  //               //TODO Event for deleting this entry
+  //               // print('I want to delete this entry');
+  //               // print('uid of this entry is ${state.listOfEntryData[index].uid}');
+  //               //
+  //               // context.read<DatabaseBloc>().add(EntryDeleteRequest(state.listOfEntryData[index].uid));
+  //               //
+  //               // // onPressed: () async {
+  //               // String? displayName = (context.read<AuthenticationBloc>().state
+  //               // as AuthenticationSuccess)
+  //               //     .displayName;
+  //               // context.read<DatabaseBloc>().add(DatabaseFetched(displayName));
+  //               // // })
+  //             }, icon: const Icon(Icons.delete)),
+  //
+  //             onTap: () {
+  //               // context.read<DatabaseBloc>().add(EntrySelected(index)); // Original
+  //               print('usersQuery is $usersQuery');
+  //               print('user is $user');
+  //               print('snapshot is $snapshot');
+  //               print('snapshot.data().entries is ${snapshot.data().entries}');
+  //
+  //
+  //             },
+  //           ),
+  //         );
+  //       },
+  //     ),
+  //   );
+  // }
 
 }
