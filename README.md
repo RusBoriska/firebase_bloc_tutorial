@@ -1,6 +1,6 @@
 # firebase_bloc_tutorial
 
-A new Flutter project with Firebase and BLoC.
+A new Flutter project with Firebase, OneSignal, AppMetrica and BLoC.
 
 ## Getting Started
 
